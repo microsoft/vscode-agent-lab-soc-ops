@@ -15,15 +15,16 @@ Harald Kirschner `@digitarald`
 
 ## Setup
 
-https://github.com/microsoft/vscode-agent-lab-soc-ops
 
-1. GitHub:
-   1. *Use this template* > *Create a new repository* (pick `my-soc-ops`, make it public)
-   2. Enable *Settings* > *Pages* > *Deploy from a branch* to *GitHub Actions*
-2. VS Code
-	- Install recommended extensions (notification or `Extensions: Show Recommended Extensions`)
-	- Command: `Git: Clone > Clone from GitHub`
-	- Agent: `/prompt`
+1. Open https://github.com/microsoft/vscode-agent-lab-soc-ops
+   1. *Use this template* > *Create a new repository* (pick `my-soc-ops`, make it *Public*)
+      - ✅ Your own *soc-ops* GitHub repo is ready
+   2. ⚠️ Enable *Settings* > *Pages* > *Deploy from a branch* to *GitHub Actions*
+      - ✅ Any commit to the repo will publish the game as GitHub page: `http://{your-gh-username}.github.io/{my-soc-ops}`
+2. Open VS Code:
+	1. Command: `Git: Clone > Clone from GitHub`
+	2. Install recommended extensions (notification or `Extensions: Show Recommended Extensions`)
+	3. Chat: Run `/setup` lets the agent figure out any required installation steps
 3. 🎉 App is running and open in browser!
 
 Keep this `.lab/GUIDE.md` open (📌 Pin).
@@ -31,6 +32,7 @@ Keep this `.lab/GUIDE.md` open (📌 Pin).
 ## Learning Objectives
 
 After completing this workshop, you:
+
 1. **Can onboard AI to your codebase** and workflows with context engineering
 2. **Understand the agentic primitives** to build an AI-first engineering flow
 3. **Unlocked agentic abundance** to scale exploration and speed up learning across more development tasks
@@ -40,11 +42,11 @@ After completing this workshop, you:
 
 1. Keep the live-updated browser open
 2. Commit working code often
-3. Revert unexpected changes using *Checkpoints* and *Undo* and try again (later)
+3. Revert unexpected changes using chat *Checkpoints* and *Undo*, then try again
 
 ## 1. Context engineering your repo
 
-Tour of the project. Try out the game.
+DIY: Tour of the project. Try out the game.
 
 ### Task: Run and understand the /setup prompt
 
