@@ -6,6 +6,8 @@
 
 In this section, you'll set up your development environment and teach GitHub Copilot about your codebase.
 
+> 🎮 **[Play the Soc Ops game](../game/)** — See what you'll be building!
+
 ---
 
 ## 🔧 Initial Setup

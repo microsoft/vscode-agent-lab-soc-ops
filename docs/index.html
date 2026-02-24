@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VS Code GitHub Copilot Agent Lab | TypeScript Edition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --neon-cyan: #00f5ff;
+            --neon-magenta: #ff00ff;
+            --neon-purple: #b366ff;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --border-color: #2a2a3a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background:
+                linear-gradient(90deg, rgba(0,245,255,0.03) 1px, transparent 1px),
+                linear-gradient(rgba(0,245,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        .hero { padding: 6rem 0 4rem; text-align: center; }
+        .hero-badge {
+            display: inline-block; padding: 0.5rem 1rem;
+            background: rgba(0,245,255,0.1); border: 1px solid var(--neon-cyan);
+            border-radius: 50px; font-size: 0.875rem; color: var(--neon-cyan);
+            margin-bottom: 2rem; font-family: 'JetBrains Mono', monospace;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-subtitle { font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; }
+        .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 1rem 2rem; border-radius: 8px; font-weight: 600;
+            text-decoration: none; transition: all 0.3s ease; font-size: 1rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            color: var(--bg-dark);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(0,245,255,0.3); }
+        .btn-secondary { background: transparent; border: 2px solid var(--border-color); color: var(--text-primary); }
+        .btn-secondary:hover { border-color: var(--neon-cyan); color: var(--neon-cyan); }
+
+        .stats { display: flex; justify-content: center; gap: 3rem; margin-top: 4rem; flex-wrap: wrap; }
+        .stat { text-align: center; }
+        .stat-value { font-size: 2rem; font-weight: 700; color: var(--neon-cyan); font-family: 'JetBrains Mono', monospace; }
+        .stat-label { font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem; }
+
+        .features { padding: 4rem 0; }
+        .section-title { font-size: 2rem; text-align: center; margin-bottom: 3rem; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .feature-card {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 2rem; transition: all 0.3s ease;
+        }
+        .feature-card:hover { border-color: var(--neon-cyan); transform: translateY(-4px); }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .feature-card h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .feature-card p { color: var(--text-secondary); font-size: 0.95rem; }
+
+        .workshop { padding: 4rem 0; }
+        .parts-list { display: flex; flex-direction: column; gap: 1rem; max-width: 800px; margin: 0 auto; }
+        .part-card {
+            display: flex; align-items: center; gap: 1.5rem;
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 1.5rem; text-decoration: none;
+            color: inherit; transition: all 0.3s ease;
+        }
+        .part-card:hover { border-color: var(--neon-magenta); background: rgba(255,0,255,0.05); }
+        .part-number {
+            width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            border-radius: 12px; font-weight: 700; font-size: 1.25rem;
+            color: var(--bg-dark); flex-shrink: 0;
+        }
+        .part-content { flex: 1; }
+        .part-content h3 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+        .part-content p { color: var(--text-secondary); font-size: 0.9rem; }
+        .part-time {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.875rem;
+            color: var(--neon-cyan); padding: 0.25rem 0.75rem;
+            background: rgba(0,245,255,0.1); border-radius: 50px;
+        }
+
+        .prereqs { padding: 4rem 0; background: var(--bg-card); }
+        .prereqs-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem; max-width: 800px; margin: 0 auto;
+        }
+        .prereq-item { display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--bg-dark); border-radius: 8px; }
+        .prereq-check { color: var(--neon-cyan); font-size: 1.25rem; }
+
+        footer { padding: 3rem 0; text-align: center; border-top: 1px solid var(--border-color); }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--neon-cyan); }
+        .footer-credit { color: var(--text-secondary); font-size: 0.875rem; }
+
+        @media (max-width: 768px) {
+            .hero { padding: 4rem 0 3rem; }
+            .stats { gap: 2rem; }
+            .part-card { flex-direction: column; text-align: center; }
+            .part-time { margin-top: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="hero">
+            <span class="hero-badge">🚀 TypeScript + Vite + React + Tailwind</span>
+            <h1>VS Code GitHub Copilot Agent Lab</h1>
+            <p class="hero-subtitle">
+                Build a Social Bingo game while mastering VS Code's Agent Mode with GitHub Copilot.
+                Learn context engineering, custom agents, and AI-first development workflows.
+            </p>
+            <div class="hero-cta">
+                <a href="step.html?step=00-overview" class="btn btn-primary">🚀 Start Workshop</a>
+                <a href="https://github.com/copilot-dev-days/agent-lab-typescript" class="btn btn-secondary">📦 GitHub Repo</a>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">~1hr</div>
+                    <div class="stat-label">Duration</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Parts</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">9</div>
+                    <div class="stat-label">Checkpoints</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2 class="section-title">What You'll Learn</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Context Engineering</h3>
+                    <p>Teach AI about your codebase with instructions, making Copilot suggestions more accurate and relevant.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Agentic Primitives</h3>
+                    <p>Use background agents, cloud agents, and custom workflows to scale your development.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Design-First Development</h3>
+                    <p>Let AI iterate on UI while you guide the creative vision with specialized design agents.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧪</div>
+                    <h3>Test-Driven Development</h3>
+                    <p>Build reliable features using TDD agents with Red-Green-Refactor workflow.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="workshop">
+            <h2 class="section-title">Workshop Parts</h2>
+            <div class="parts-list">
+                <a href="step.html?step=01-setup" class="part-card">
+                    <div class="part-number">01</div>
+                    <div class="part-content">
+                        <h3>Setup & Context Engineering</h3>
+                        <p>Clone, configure, and teach the AI about your project</p>
+                    </div>
+                    <span class="part-time">15 min</span>
+                </a>
+                <a href="step.html?step=02-design" class="part-card">
+                    <div class="part-number">02</div>
+                    <div class="part-content">
+                        <h3>Design-First Frontend</h3>
+                        <p>Redesign the UI with creative themes using Plan Mode</p>
+                    </div>
+                    <span class="part-time">15 min</span>
+                </a>
+                <a href="step.html?step=03-quiz-master" class="part-card">
+                    <div class="part-number">03</div>
+                    <div class="part-content">
+                        <h3>Custom Quiz Master</h3>
+                        <p>Create themed quiz questions with custom agents</p>
+                    </div>
+                    <span class="part-time">10 min</span>
+                </a>
+                <a href="step.html?step=04-multi-agent" class="part-card">
+                    <div class="part-number">04</div>
+                    <div class="part-content">
+                        <h3>Multi-Agent Development</h3>
+                        <p>Build new features with TDD and design agents</p>
+                    </div>
+                    <span class="part-time">20 min</span>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <section class="prereqs">
+        <div class="container">
+            <h2 class="section-title">Prerequisites</h2>
+            <div class="prereqs-grid">
+                <div class="prereq-item">
+                    <span class="prereq-check">✓</span>
+                    <span>VS Code v1.107+</span>
+                </div>
+                <div class="prereq-item">
+                    <span class="prereq-check">✓</span>
+                    <span>GitHub Copilot</span>
+                </div>
+                <div class="prereq-item">
+                    <span class="prereq-check">✓</span>
+                    <span>Node.js 22+</span>
+                </div>
+                <div class="prereq-item">
+                    <span class="prereq-check">✓</span>
+                    <span>Git installed</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <footer>
+            <div class="footer-links">
+                <a href="https://github.com/copilot-dev-days/agent-lab-typescript">GitHub Repository</a>
+                <a href="https://www.youtube.com/code">VS Code YouTube</a>
+                <a href="https://code.visualstudio.com/docs/copilot/overview">Copilot Docs</a>
+                <a href="https://github.com/github/awesome-copilot">Awesome Copilot</a>
+            </div>
+            <p class="footer-credit">Built with 💜 by the VS Code Team</p>
+        </footer>
+    </div>
+</body>
+</html>

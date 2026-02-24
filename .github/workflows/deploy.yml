@@ -30,16 +30,29 @@ jobs:
       
       - run: npm ci
       
-      - name: Build
+      - name: Build app
         run: npm run build
         env:
           VITE_REPO_NAME: ${{ github.event.repository.name }}
+      
+      - name: Prepare deployment
+        run: |
+          mkdir -p ./_site
+          
+          # Copy workshop docs to deployment root
+          cp -r docs/* ./_site/
+          
+          # Copy built app to /game/ subfolder
+          cp -r dist ./_site/game
+          
+          # Prevent Jekyll processing
+          touch ./_site/.nojekyll
       
       - uses: actions/configure-pages@v4
       
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: _site
       
       - name: Deploy to GitHub Pages
         id: deployment

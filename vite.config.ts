@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   // Auto-detect base path from environment (GitHub Actions sets VITE_REPO_NAME)
-  base: process.env.VITE_REPO_NAME ? `/${process.env.VITE_REPO_NAME}/` : '/',
+  base: process.env.VITE_REPO_NAME ? `/${process.env.VITE_REPO_NAME}/game/` : '/',
   test: {
     globals: true,
     environment: 'jsdom',
