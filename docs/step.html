@@ -337,6 +337,9 @@
             md = md.replace(/👉 \*\*\[Continue to[^\n]+/g, '');
             md = md.replace(/👉 \*\*\[Start with[^\n]+/g, '');
 
+            // Convert relative game link to absolute
+            md = md.replace(/\]\(\.\.\/game\/\)/g, '](game/)');
+
             // Convert internal markdown links to step viewer links
             md = md.replace(/\]\((\d+)-([^)]+)\.md\)/g, '](step.html?step=$1-$2)');
             md = md.replace(/\]\(GUIDE\.md\)/g, '](step.html?step=guide)');
