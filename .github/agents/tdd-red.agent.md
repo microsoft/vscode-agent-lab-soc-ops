@@ -1,7 +1,6 @@
 ---
 name: TDD Red
 description: TDD phase for writing FAILING tests
-infer: true
 tools: ['read', 'edit', 'search']
 handoffs:
   - label: TDD Green

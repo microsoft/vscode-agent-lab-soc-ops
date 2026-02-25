@@ -2,6 +2,8 @@
 name: TDD Supervisor
 description: Orchestrate full TDD cycle from request to implementation
 tools: ['agent']
+disable-model-invocation: true
+agents: ['TDD Green', 'TDD Red', 'TDD Refactor']
 ---
 
 Your goal is take high-level user instructions (feature, spec, bug fix) to orchestrate the TDD cycle:
