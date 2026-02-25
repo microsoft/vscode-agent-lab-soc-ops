@@ -1,29 +1,42 @@
 interface StartScreenProps {
-  onStart: () => void;
+  onStartBingo: () => void;
+  onStartQuizWizard: () => void;
 }
 
-export function StartScreen({ onStart }: StartScreenProps) {
+export function StartScreen({ onStartBingo, onStartQuizWizard }: StartScreenProps) {
   return (
     <div className="flex flex-col items-center justify-center min-h-full p-6 bg-gray-50">
-      <div className="text-center max-w-sm">
+      <div className="text-center max-w-sm w-full">
         <h1 className="text-4xl font-bold text-gray-900 mb-2">Soc Ops</h1>
         <p className="text-lg text-gray-600 mb-8">Social Bingo</p>
-        
-        <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 mb-8">
-          <h2 className="font-semibold text-gray-800 mb-3">How to play</h2>
-          <ul className="text-left text-gray-600 text-sm space-y-2">
-            <li>• Find people who match the questions</li>
-            <li>• Tap a square when you find a match</li>
-            <li>• Get 5 in a row to win!</li>
-          </ul>
+
+        <p className="text-sm text-gray-500 mb-4 tracking-wide uppercase font-medium">Choose a mode</p>
+
+        <div className="flex flex-col gap-3 mb-6">
+          <button
+            onClick={onStartBingo}
+            className="w-full bg-white border-2 border-gray-200 rounded-lg p-5 text-left active:bg-gray-50 transition-colors"
+          >
+            <div className="flex items-center justify-between mb-1">
+              <span className="font-bold text-gray-900 text-lg">Bingo</span>
+              <span className="text-2xl">🎯</span>
+            </div>
+            <p className="text-sm text-gray-500">5×5 grid • Get 5 in a row to win</p>
+          </button>
+
+          <button
+            onClick={onStartQuizWizard}
+            className="w-full bg-white border-2 border-gray-200 rounded-lg p-5 text-left active:bg-gray-50 transition-colors"
+          >
+            <div className="flex items-center justify-between mb-1">
+              <span className="font-bold text-gray-900 text-lg">Quiz Wizard</span>
+              <span className="text-2xl">🃏</span>
+            </div>
+            <p className="text-sm text-gray-500">One question at a time • Find everyone</p>
+          </button>
         </div>
 
-        <button
-          onClick={onStart}
-          className="w-full bg-accent text-white font-semibold py-4 px-8 rounded-lg text-lg active:bg-accent-light transition-colors"
-        >
-          Start Game
-        </button>
+        <p className="text-xs text-gray-400">Find people who match each question</p>
       </div>
     </div>
   );
