@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import { useBingoGame } from './hooks/useBingoGame';
 import { StartScreen } from './components/StartScreen';
 import { GameScreen } from './components/GameScreen';
 import { BingoModal } from './components/BingoModal';
+import { QuizWizardScreen } from './components/QuizWizardScreen';
 
 function App() {
+  const [quizWizardActive, setQuizWizardActive] = useState(false);
+
   const {
     gameState,
     board,
@@ -15,8 +19,17 @@ function App() {
     dismissModal,
   } = useBingoGame();
 
+  if (quizWizardActive) {
+    return <QuizWizardScreen onReset={() => setQuizWizardActive(false)} />;
+  }
+
   if (gameState === 'start') {
-    return <StartScreen onStart={startGame} />;
+    return (
+      <StartScreen
+        onStartBingo={startGame}
+        onStartQuizWizard={() => setQuizWizardActive(true)}
+      />
+    );
   }
 
   return (

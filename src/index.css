@@ -6,6 +6,14 @@
   --color-marked: #dcfce7;
   --color-marked-border: #22c55e;
   --color-bingo: #fbbf24;
+
+  /* Quiz Wizard theme */
+  --color-wiz-bg: #f0ebe0;
+  --color-wiz-ink: #0d0d0d;
+  --color-wiz-red: #c9281a;
+  --color-wiz-card: #ffffff;
+  --font-wiz-display: 'Unbounded', sans-serif;
+  --font-wiz-body: 'Courier Prime', monospace;
 }
 
 html,
@@ -18,4 +26,15 @@ body {
   margin: 0;
   font-family: system-ui, -apple-system, sans-serif;
   -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes wiz-slide-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes wiz-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.06); }
+  100% { transform: scale(1); }
 }
