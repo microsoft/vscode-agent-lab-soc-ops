@@ -80,6 +80,7 @@
         }
 
         const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/copilot-dev-days/agent-lab-typescript/main/workshop/';
+        const CHECKBOX_STATE_KEY_PREFIX = 'workshop-checkboxes:';
 
         function getCurrentStepId() {
             const params = new URLSearchParams(window.location.search);
@@ -162,6 +163,39 @@
             return md;
         }
 
+        function getCheckboxStorageKey(stepId) {
+            return `${CHECKBOX_STATE_KEY_PREFIX}${stepId}`;
+        }
+
+        function setupInteractiveCheckboxes(stepId) {
+            const container = document.getElementById('markdown-content');
+            const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+            if (!checkboxes.length) return;
+
+            const storageKey = getCheckboxStorageKey(stepId);
+            let checkedIndexes = [];
+
+            try {
+                checkedIndexes = JSON.parse(localStorage.getItem(storageKey) || '[]');
+                if (!Array.isArray(checkedIndexes)) checkedIndexes = [];
+            } catch {
+                checkedIndexes = [];
+            }
+
+            checkboxes.forEach((checkbox, index) => {
+                checkbox.removeAttribute('disabled');
+                checkbox.disabled = false;
+                checkbox.checked = checkedIndexes.includes(index) ? true : checkbox.checked;
+                checkbox.setAttribute('aria-label', `Checklist item ${index + 1}`);
+
+                checkbox.addEventListener('change', () => {
+                    const updated = Array.from(checkboxes)
+                        .flatMap((cb, i) => (cb.checked ? [i] : []));
+                    localStorage.setItem(storageKey, JSON.stringify(updated));
+                });
+            });
+        }
+
         async function loadContent() {
             const idx = getCurrentStepIndex();
             if (idx === -1) {
@@ -188,6 +222,7 @@
 
                 marked.setOptions({ breaks: true, gfm: true });
                 document.getElementById('markdown-content').innerHTML = marked.parse(md);
+                setupInteractiveCheckboxes(step.id);
 
                 if (step.id === '05-complete') {
                     setTimeout(celebrate, 500);
