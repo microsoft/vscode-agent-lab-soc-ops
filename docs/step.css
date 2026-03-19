@@ -172,7 +172,7 @@
         .markdown .code-copy-btn {
             position: absolute; top: 0.75rem; right: 0.75rem;
             display: inline-flex; align-items: center; justify-content: center;
-            min-width: 5.5rem; padding: 0.4rem 0.75rem;
+            min-width: max-content; padding: 0.4rem 0.75rem;
             border: 1px solid var(--border-color); border-radius: 999px;
             background: var(--bg-overlay); color: var(--text-secondary);
             font: inherit; font-size: 0.8rem; cursor: pointer; transition: all 0.2s ease;

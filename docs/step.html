@@ -223,7 +223,7 @@
             if (!container) return;
             const codeBlocks = container.querySelectorAll('pre');
 
-            codeBlocks.forEach((pre, index) => {
+            codeBlocks.forEach((pre) => {
                 const code = pre.querySelector('code');
                 const codeText = code?.textContent?.trim();
                 if (!codeText) return;
@@ -232,7 +232,7 @@
                 copyButton.type = 'button';
                 copyButton.className = 'code-copy-btn';
                 copyButton.textContent = 'Copy';
-                copyButton.setAttribute('aria-label', `Copy code block ${index + 1}`);
+                copyButton.setAttribute('aria-label', 'Copy code');
 
                 const liveRegion = document.createElement('span');
                 liveRegion.className = 'sr-only';
