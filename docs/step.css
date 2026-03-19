@@ -165,7 +165,7 @@
             position: relative;
             background: var(--bg-code); border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: var(--code-block-top-padding) var(--code-block-horizontal-padding) var(--code-block-horizontal-padding);
+            padding: var(--code-block-top-padding) var(--code-block-horizontal-padding) var(--code-block-horizontal-padding) var(--code-block-horizontal-padding);
             overflow-x: auto; margin: 1.5rem 0;
         }
         .markdown pre code { color: var(--text-primary); background: none; padding: 0; }

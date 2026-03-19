@@ -213,8 +213,9 @@
             textarea.style.left = '-9999px';
             document.body.appendChild(textarea);
             textarea.select();
-            document.execCommand('copy');
+            const copied = document.execCommand('copy');
             document.body.removeChild(textarea);
+            if (!copied) throw new Error('Fallback copy failed');
         }
 
         function setupCodeBlockCopyButtons() {
@@ -237,7 +238,7 @@
                 liveRegion.className = 'sr-only';
                 liveRegion.setAttribute('aria-live', 'polite');
 
-                const resetButton = () => {
+                const resetButtonState = () => {
                     copyButton.textContent = 'Copy';
                     copyButton.dataset.state = 'idle';
                     liveRegion.textContent = '';
@@ -263,7 +264,7 @@
 
                     resetTimer = setTimeout(() => {
                         pendingCopyResetTimers.delete(resetTimer);
-                        resetButton();
+                        resetButtonState();
                     }, 2000);
                     pendingCopyResetTimers.add(resetTimer);
                 });
