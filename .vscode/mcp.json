@@ -1,13 +1,4 @@
 {  
   "servers": {
-    "microsoft/playwright-mcp": {
-      "type": "stdio",
-      "command": "npx",
-      "args": [
-        "@playwright/mcp@latest",
-        "--browser=msedge",
-        // "--headless=true"  // Run in faster headless mode
-      ]
-    }
   }
 }

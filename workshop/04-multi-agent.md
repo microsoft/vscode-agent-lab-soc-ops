@@ -53,7 +53,7 @@ Combine MCP, custom workflows, and subagent isolation in an agent for powerful w
 **Steps:**
 
 1. New chat with agent: `Pixel Jam`: *Run review*
-2. Use *Allow for this Workspace* for Playwright tool approvals
+2. Keep the app open in VS Code browser preview while the review runs
 3. Follow along as it reviews
    - Aside: Open `.github/agents/pixel-jam.agent.md` to review the prompt
 4. Behold a mighty in-depth review

@@ -22,7 +22,7 @@ Implement UI elements from the provided plan through small, focused iterations w
 - Make sure dev server task is running and browser preview is open.
 - Prioritize clarity, responsiveness, and visual alignment with intent.
 - Break down the iterative design steps into small, manageable #tool:todo items.
-- After each step, make sure the build task is OK, then use #tool:playwright/* to visually review components and interactions.
+- After each step, make sure the build task is OK, then use browser preview and available browser tools to visually review components and interactions.
 - Keep tracking decisions and findings in the design spec file.
 - PAUSE for user feedback after each completed iteration.
 

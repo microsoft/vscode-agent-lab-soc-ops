@@ -1,6 +1,4 @@
 {
-  "chat.customAgentInSubagent.enabled": true,
-  "scm.repositories.selectionMode": "single",
   "chat.promptFilesRecommendations": {
     "setup": "resourceFilename == 'README.md'"
   },
@@ -16,8 +14,5 @@
   "github.copilot.chat.githubMcpServer.toolsets": [
     "repos,issues,pull_requests,code_search,copilot,web_search"
   ],
-  "chat.viewTitle.enabled": true,
-  "chat.viewSessions.enabled": true,
-  "github.copilot.chat.cli.customAgents.enabled": true,
-  "scm.repositories.explorer": true
+  "workbench.browser.enableChatTools": true
 }
