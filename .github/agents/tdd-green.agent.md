@@ -3,7 +3,7 @@ name: TDD Green
 description: TDD phase for writing MINIMAL implementation to pass tests
 tools: ['search', 'read', 'edit', 'execute/runTests']
 disable-model-invocation: true
-# user-invocable: false
+user-invocable: false
 hooks:
   Stop:
     - type: command
