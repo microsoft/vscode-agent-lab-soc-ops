@@ -13,6 +13,7 @@ Welcome to **Bingo Mixer** — a hands-on workshop where you'll transform a soci
 ## 📋 Quick Checklist
 
 - [ ] Latest VS Code **v1.113** (no update pending)
+  - [ ] Make sure updates are not disabled
 - [ ] Signed in with GitHub (Copilot Free can not run cloud agent!)
 - [ ] Git & Node installed
 - [ ] Chat open and Agent ready for action

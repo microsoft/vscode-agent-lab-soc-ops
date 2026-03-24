@@ -1,5 +1,5 @@
 ---
-name: TDD Supervisor
+name: TDD
 description: Orchestrate full TDD cycle from request to implementation
 tools: ['agent', 'read', 'search', 'execute/runTests']
 disable-model-invocation: true

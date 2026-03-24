@@ -69,11 +69,12 @@ Instructions guide all agentic codebase interactions, making them more efficient
 
 **Steps:**
 
-1. Run prompt: `/init`
+1. Run prompt: `/init` with Autopilot enabled
    - While agent analyzes the codebase, optionally start next task
-2. Review results — probably too long and detailed
-3. Follow-up: *"Compress down by half and add a mandatory development [ ] checklist (lint, build, test) to the top"*
-4. Commit instructions
+2. Open a new chat for the next task, as init can take a while and we can review later.
+3. Review results — is it not too long and overly detailed
+   1. Optional follow-up: *"Compress down and add a mandatory development [ ] checklist (lint, build, test) to the top"*
+4. Apply and commit
 
 ✅ **Result:** All future requests will have a basic map of the workspace.
 
@@ -104,16 +105,6 @@ Tour the repo customizations to understand how context engineering works in prac
 3. Look at the **frontend design skill** and **Tailwind 4 instructions**
 
 > 💡 **Think about:** What conventions or patterns from your own projects could become instructions or skills?
-
----
-
-### Task 4: Check Frontend Design Skill
-
-The "no purple gradients" instructions challenge the agent to think like a designer and be more bold and creative.
-
-Source: Claude blog, linked in the footer.
-
-> 💡 **Think about:** What other agentic biases could you challenge and nudge?
 
 ---
 

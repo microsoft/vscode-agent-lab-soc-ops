@@ -2,7 +2,6 @@
   "recommendations": [
     "vitest.explorer",
     "dbaeumer.vscode-eslint",
-    "bradlc.vscode-tailwindcss",
-    "vitest.explorer"
+    "bradlc.vscode-tailwindcss"
   ]
 }
